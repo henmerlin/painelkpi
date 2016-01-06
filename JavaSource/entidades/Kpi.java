@@ -3,6 +3,7 @@ package entidades;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -26,14 +27,14 @@ public class Kpi{
 	@ManyToOne
 	private Area area;
 	
-	
-	@OneToMany(mappedBy="kpi")
+	@OneToMany(mappedBy="kpi", fetch=FetchType.EAGER)
 	private List<Resultado> resultados;
 	
 
 	public Kpi() {
 		this.area = new Area();
 	}
+
 
 	public Integer getId() {
 		return id;
@@ -58,6 +59,15 @@ public class Kpi{
 	public void setArea(Area area) {
 		this.area = area;
 	}
+	
+	public List<Resultado> getResultados() {
+		return resultados;
+	}
+
+	public void setResultados(List<Resultado> resultados) {
+		this.resultados = resultados;
+	}
+	
 	
 	@Override
 	public int hashCode() {

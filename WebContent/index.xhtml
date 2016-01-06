@@ -12,35 +12,38 @@
 	<ui:define name="botoesAcao"></ui:define>
 	<ui:define name="conteudo">
 
-		<p:dataTable var="frente" value="#{frenteBean.listar()}">
+		<p:dataTable var="area" value="#{areaBean.listar()}">
+			<f:facet name="header">
+            	Histórico dos Indicadores
+       	 	</f:facet>
 
-			<p:column headerText="Frentes">
-				<h:outputText value="#{frente.nome}" />
+			<p:columnGroup type="header">
+				<p:row>
+					<p:column rowspan="2" headerText="Area" />
+					<p:column colspan="#{dtGroupView.yearCount}" headerText="Goals" />
+				</p:row>
+				<p:row>
+					<ui:repeat value="#{area}" var="area">
+						<p:column headerText="#{year}" />
+					</ui:repeat>
+				</p:row>
+			</p:columnGroup>
+
+			<p:column>
+				<h:outputText value="#{player.name}" />
 			</p:column>
 
-			<p:column headerText="Areas">
-				<p:dataTable var="area" value="#{frente.areas}">
-					<p:column headerText="Areas" colspan="2">
-						<h:outputText value="#{area.nome}" />
-					</p:column>
-					
-					<p:column headerText="KPIs">
-					
-						<p:dataTable var="kpis" value="#{area.kpis}">
-							<p:column headerText="Areas">
-								<h:outputText value="#{kpis.nome}" />
-							</p:column>
-						</p:dataTable>
-					
-					</p:column>
-					
-					
-					
-				</p:dataTable>
-			</p:column>
-			
+			<p:columns value="#{dtGroupView.years}" var="year">
+				<h:outputText value="#{player.getGoals(year)}" />
+			</p:columns>
 
+			<f:facet name="footer">
+            Data between 2010-2014
+        </f:facet>
 		</p:dataTable>
+
+
+
 
 
 	</ui:define>
