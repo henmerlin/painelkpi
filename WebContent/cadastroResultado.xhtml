@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/recursos/template/template.xhtml">
+
+	<ui:define name="tituloPrincipal">Cadastro de KPIs</ui:define>
+	<ui:define name="tituloSecundario">Centro de Operações</ui:define>
+	<ui:define name="botoesAcao"></ui:define>
+
+	<ui:define name="botoesAcao">
+		<p:commandButton value="Cadastrar" action="#{kpiBean.cadastrar()}"
+			update="@form" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:panelGrid columns="3">
+
+			<p:outputLabel for="n1" value="Nome: " />
+			<p:inputText id="n1" value="#{kpiBean.kpi.nome}" />
+			<p:message for="n1" />
+
+			<p:outputLabel for="n2" value="Área: " />
+			<p:selectOneMenu id="n2" value="#{kpiBean.kpi.area}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+				<f:selectItems value="#{areaBean.listar()}" var="frente"
+					itemLabel="#{frente.nome}" itemValue="#{frente}" />/>
+	        </p:selectOneMenu>
+			<p:message for="n2" />
+
+		</h:panelGrid>
+	</ui:define>
+
+</ui:composition>
+
+</html>
