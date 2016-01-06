@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import entidades.Area;
+import entidades.Frente;
 
 @Stateless
 public class AreaServico {
@@ -36,5 +37,18 @@ public class AreaServico {
 			return new ArrayList<Area>();
 		}
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Area> listarFrentes(Frente frente) {
+		try {
+			Query query = this.entityManager.createQuery("FROM Frente f WHERE f.Area=:arg1");
+			query.setParameter("arg1", frente);
+			return query.getResultList();
+		} catch (NoResultException e) {
+			return new ArrayList<Area>();
+		}
+	}	
+	
 	
 }

@@ -12,14 +12,36 @@
 	<ui:define name="botoesAcao"></ui:define>
 	<ui:define name="conteudo">
 
+		<p:dataTable var="frente" value="#{frenteBean.listar()}">
 
-		<p:panel id="tabela" header="Tabela">
-			<p:panelGrid columns="2" cellpadding="10">
-				
+			<p:column headerText="Frentes">
+				<h:outputText value="#{frente.nome}" />
+			</p:column>
 
+			<p:column headerText="Areas">
+				<p:dataTable var="area" value="#{frente.areas}">
+					<p:column headerText="Areas">
+						<h:outputText value="#{area.nome}" />
+					</p:column>
+					
+					<p:column headerText="KPIs">
+					
+						<p:dataTable var="kpis" value="#{area.kpis}">
+							<p:column headerText="Areas">
+								<h:outputText value="#{kpis.nome}" />
+							</p:column>
+						</p:dataTable>
+					
+					</p:column>
+					
+					
+					
+				</p:dataTable>
+			</p:column>
+			
 
-			</p:panelGrid>
-		</p:panel>
+		</p:dataTable>
+
 
 	</ui:define>
 

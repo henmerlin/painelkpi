@@ -20,7 +20,7 @@ public class Kpi{
 	private String nome;
 
 	@NotNull
-	@ManyToOne()
+	@ManyToOne
 	private Area area;
 	
 

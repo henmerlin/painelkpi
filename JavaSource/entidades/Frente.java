@@ -2,6 +2,7 @@ package entidades;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -20,8 +21,16 @@ public class Frente {
 	@NotEmpty
 	private String nome;
 
-	@OneToMany(mappedBy = "frente")
+	@OneToMany(mappedBy = "frente", fetch=FetchType.EAGER)
 	private List<Area> areas;
+
+	public List<Area> getAreas() {
+		return areas;
+	}
+
+	public void setAreas(List<Area> areas) {
+		this.areas = areas;
+	}
 
 	public Frente() {
 
