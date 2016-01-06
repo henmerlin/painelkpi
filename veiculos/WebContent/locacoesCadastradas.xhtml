@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/recursos/template/template.xhtml">
+
+	<ui:define name="tituloPagina">Locações registradas</ui:define>
+	<ui:define name="tituloPrincipal">Locações registradas</ui:define>
+	<ui:define name="tituloSecundario">Locações registradas</ui:define>
+
+	<ui:define name="botoesAcao">
+
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<p:dataTable value="#{locacaoBean.listar()}" var="locacao">
+			<p:column headerText="Identificação">
+				<h:outputText value="#{locacao.id}" />
+			</p:column>
+			<p:column headerText="Modelo">
+				<h:outputText
+					value="#{locacao.veiculo.modelo} - #{locacao.veiculo.placa}" />
+			</p:column>
+
+			<p:column headerText="Cliente">
+				<h:outputText
+					value="#{locacao.cliente.nome} - #{locacao.cliente.cpf}" />
+			</p:column>
+
+			<p:column headerText="Preço da diária">
+				<h:outputText value="R$ #{locacao.precoDiaria}" />
+			</p:column>
+
+			<p:column headerText="Data locação">
+				<h:outputText value="#{locacao.dataInicio}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Data término locação">
+				<h:outputText value="#{locacao.dataTermino}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Dias de locação">
+				<h:outputText value="#{locacao.diasLocacao}"
+					rendered="#{locacao.diasLocacao!=null}" />
+			</p:column>
+
+			<p:column headerText="Valor total">
+				<h:outputText value="R$ #{locacao.precoTotal}"
+					rendered="#{locacao.precoTotal!=null}" />
+			</p:column>
+
+			<p:column headerText="Ações">
+				<p:commandButton value="Excluir"
+					action="#{locacaoBean.remover(locacao)}" update="@form">
+					<p:confirm header="Exclusão de Locação"
+						message="Deseja remover a locação nº #{locacao.id} ?"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:commandButton value="Finalizar"
+					action="#{locacaoBean.finalizar(locacao)}" update="@form">
+					<p:confirm header="Finalizar a Locação"
+						message="Deseja finalizar a locação nº #{locacao.id} ?"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+			</p:column>
+
+		</p:dataTable>
+	</ui:define>
+
+</ui:composition>
+</html>

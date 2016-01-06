@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/recursos/template/template.xhtml">
+
+	<ui:define name="tituloPagina">Clientes cadastrados</ui:define>
+	<ui:define name="tituloPrincipal">Clientes cadastrados</ui:define>
+	<ui:define name="tituloSecundario">Clientes cadastrados</ui:define>
+
+	<ui:define name="botoesAcao">
+
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<p:dataTable value="#{clienteBean.listar()}" var="cliente">
+
+			<p:column headerText="Nome">
+				<h:outputText value="#{cliente.nome}" />
+			</p:column>
+
+			<p:column headerText="CPF">
+				<h:outputText value="#{cliente.cpf}" />
+			</p:column>
+
+			<p:column headerText="Data de nascimento">
+				<h:outputText value="#{cliente.dataNascimento}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Ações">
+				<p:commandButton value="Excluir"
+					action="#{clienteBean.remover(cliente)}" update="@form">
+					<p:confirm header="Exclusão de Cliente"
+						message="Deseja remover o cliente #{cliente.nome} ?"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+			</p:column>
+
+		</p:dataTable>
+	</ui:define>
+
+</ui:composition>
+</html>

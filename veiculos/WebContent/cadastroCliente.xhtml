@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/recursos/template/template.xhtml">
+
+	<ui:define name="tituloPagina">Cadastro de Cliente</ui:define>
+	<ui:define name="tituloPrincipal">Cadastro de Cliente</ui:define>
+	<ui:define name="tituloSecundario">cadastre os clientes para realizar locações</ui:define>
+
+	<ui:define name="botoesAcao">
+		<p:commandButton value="Cadastrar" action="#{clienteBean.cadastrar()}"
+			update="@form" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:panelGrid columns="3">
+			<p:outputLabel for="n1" value="Nome:" />
+			<p:inputText id="n1" value="#{clienteBean.cliente.nome}" />
+			<p:message for="n1" />
+
+			<p:outputLabel for="n2" value="CPF:" />
+			<p:inputMask mask="999.999.999-99" id="n2"
+				value="#{clienteBean.cliente.cpf}" />
+			<p:message for="n2" />
+
+			<p:outputLabel for="n3" value="Data de nascimento:" />
+			<p:calendar id="n3" value="#{clienteBean.cliente.dataNascimento}"
+				locale="pt" mask="99/99/9999" pattern="dd/MM/yyyy" />
+			<p:message for="n3" />
+		</h:panelGrid>
+	</ui:define>
+
+</ui:composition>
+</html>

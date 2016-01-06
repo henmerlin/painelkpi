@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/recursos/template/template.xhtml">
+
+	<ui:define name="tituloPagina">Registro de Locação</ui:define>
+	<ui:define name="tituloPrincipal">Registro de Locação</ui:define>
+	<ui:define name="tituloSecundario">registre as locações dos veículos</ui:define>
+
+	<ui:define name="botoesAcao">
+		<p:commandButton value="Cadastrar" action="#{locacaoBean.cadastrar()}"
+			update="@form" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:panelGrid columns="3">
+			<p:outputLabel for="n0" value="Veículo:" />
+			<p:selectOneMenu id="n0" value="#{locacaoBean.locacao.veiculo}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemLabel="--selecione--" noSelectionOption="true" />
+				<f:selectItems value="#{veiculoBean.listar()}" var="veiculo"
+					itemLabel="#{veiculo.modelo} - #{veiculo.placa}"
+					itemValue="#{veiculo}" />
+			</p:selectOneMenu>
+			<p:message for="n0" />
+
+			<p:outputLabel for="n1" value="Cliente" />
+			<p:selectOneMenu id="n1" value="#{locacaoBean.locacao.cliente}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemLabel="--selecione--" noSelectionOption="true" />
+				<f:selectItems value="#{clienteBean.listar()}" var="cliente"
+					itemLabel="#{cliente.nome} - #{cliente.cpf}" itemValue="#{cliente}" />
+			</p:selectOneMenu>
+			<p:message for="n1" />
+
+			<p:outputLabel for="n2" value="Preço diária:" />
+			<p:inputText id="n2" value="#{locacaoBean.locacao.precoDiaria}" />
+			<p:message for="n2" />
+
+			<p:outputLabel for="n3" value="Data de início:" />
+			<p:calendar id="n3" value="#{locacaoBean.locacao.dataInicio}"
+				locale="pt" mask="99/99/9999" pattern="dd/MM/yyyy" />
+			<p:message for="n3" />
+
+		</h:panelGrid>
+	</ui:define>
+
+</ui:composition>
+</html>
