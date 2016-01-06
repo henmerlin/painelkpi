@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -26,6 +28,10 @@ public class KpiBean {
 		JSFUtil.addInfoMessage("KPI cadastrado com sucesso!");
 	}
 	
+	public List<Kpi> listar(){
+
+		return this.servicoKpi.listar();
+	}
 
 	public Kpi getKpi() {
 		return kpi;

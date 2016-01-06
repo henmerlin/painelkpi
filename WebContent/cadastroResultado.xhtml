@@ -7,30 +7,29 @@
 
 <ui:composition template="/recursos/template/template.xhtml">
 
-	<ui:define name="tituloPrincipal">Cadastro de KPIs</ui:define>
+	<ui:define name="tituloPrincipal">Cadastro de Resultados</ui:define>
 	<ui:define name="tituloSecundario">Centro de Operações</ui:define>
 	<ui:define name="botoesAcao"></ui:define>
 
 	<ui:define name="botoesAcao">
-		<p:commandButton value="Cadastrar" action="#{kpiBean.cadastrar()}"
-			update="@form" />
+		<p:commandButton value="Cadastrar"
+			action="#{resultadoBean.cadastrar()}" update="@form" />
 	</ui:define>
 
 	<ui:define name="conteudo">
 		<h:panelGrid columns="3">
 
-			<p:outputLabel for="n1" value="Nome: " />
-			<p:inputText id="n1" value="#{kpiBean.kpi.nome}" />
+
+			<p:outputLabel for="n1" value="KPI: " />
+			<p:selectOneMenu id="n1" converter="omnifaces.SelectItemsConverter" value="#{resultadoBean.resultado.kpi}">
+				<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+				<f:selectItems value="#{kpiBean.listar()}" var="kpi"
+					itemLabel="#{kpi.nome} - #{kpi.area.nome}" itemValue="#{kpi}" />/>
+	        </p:selectOneMenu>
 			<p:message for="n1" />
 
-			<p:outputLabel for="n2" value="Área: " />
-			<p:selectOneMenu id="n2" value="#{kpiBean.kpi.area}"
-				converter="omnifaces.SelectItemsConverter">
-				<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-				<f:selectItems value="#{areaBean.listar()}" var="frente"
-					itemLabel="#{frente.nome}" itemValue="#{frente}" />/>
-	        </p:selectOneMenu>
-			<p:message for="n2" />
+			<p:outputLabel for="n2" value="Periodo: " />
+			<p:calendar id="n2" value="#{resultadoBean.resultado.periodo}" />
 
 		</h:panelGrid>
 	</ui:define>

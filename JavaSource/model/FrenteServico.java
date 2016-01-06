@@ -9,6 +9,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import entidades.Area;
 import entidades.Frente;
 
 @Stateless
@@ -36,4 +37,7 @@ public class FrenteServico {
 			return new ArrayList<Frente>();
 		}
 	}
+	
+	
+	
 }
