@@ -9,9 +9,10 @@
 		<class>entidades.Area</class>
 		<class>entidades.Kpi</class>
 		<class>entidades.Resultado</class>
+		<class>entidades.Periodo</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
 		</properties>
 	</persistence-unit>
 </persistence>

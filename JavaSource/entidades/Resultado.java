@@ -1,7 +1,5 @@
 package entidades;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,7 +17,8 @@ public class Resultado{
 	@ManyToOne
 	private Kpi kpi;
 	
-	private Date periodo;
+	@ManyToOne
+	private Periodo periodo;
 	
 	private Double valor;
 	
@@ -52,12 +51,13 @@ public class Resultado{
 		this.kpi = kpi;
 	}
 
-	public Date getPeriodo() {
+	public Periodo getPeriodo() {
 		return periodo;
 	}
 
-	public void setPeriodo(Date periodo) {
+	public void setPeriodo(Periodo periodo) {
 		this.periodo = periodo;
 	}
-	
+
+
 }

@@ -20,7 +20,8 @@
 		<h:panelGrid columns="3">
 
 			<p:outputLabel for="n1" value="KPI: " />
-			<p:selectOneMenu id="n1" converter="omnifaces.SelectItemsConverter" value="#{resultadoBean.resultado.kpi}">
+			<p:selectOneMenu id="n1" converter="omnifaces.SelectItemsConverter"
+				value="#{resultadoBean.resultado.kpi}">
 				<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
 				<f:selectItems value="#{kpiBean.listar()}" var="kpi"
 					itemLabel="#{kpi.nome} - #{kpi.area.nome}" itemValue="#{kpi}" />/>
@@ -28,7 +29,17 @@
 			<p:message for="n1" />
 
 			<p:outputLabel for="n2" value="Periodo: " />
-			<p:calendar id="n2" value="#{resultadoBean.resultado.periodo}" />
+			<p:selectOneMenu id="n2" converter="omnifaces.SelectItemsConverter"
+				value="#{resultadoBean.resultado.periodo}">
+				<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+				<f:selectItems value="#{periodoBean.listar()}" var="periodo"
+					itemLabel="#{periodo.nome}" itemValue="#{periodo}" />
+	        </p:selectOneMenu>
+			<p:message for="n2" />
+
+			<p:outputLabel for="n3" value="Valor: " />
+			<p:inputText id="n3" value="#{resultadoBean.resultado.valor}" />
+			<p:message for="n3" />
 
 		</h:panelGrid>
 	</ui:define>
