@@ -12,35 +12,72 @@
 	<ui:define name="botoesAcao"></ui:define>
 	<ui:define name="conteudo">
 
-		<p:dataTable var="area" value="#{areaBean.listar()}">
-			<f:facet name="header">
-            	Histórico dos Indicadores
-       	 	</f:facet>
-
-			<p:columnGroup type="header">
-				<p:row>
-					<p:column rowspan="2" headerText="Area" />
-					<p:column colspan="#{dtGroupView.yearCount}" headerText="Goals" />
-				</p:row>
-				<p:row>
-					<ui:repeat value="#{area}" var="area">
-						<p:column headerText="#{year}" />
-					</ui:repeat>
-				</p:row>
-			</p:columnGroup>
-
-			<p:column>
-				<h:outputText value="#{player.name}" />
+		<p:dataTable var="frente" value="#{frenteBean.listar()}">
+			<p:column headerText="Id">
+				<h:outputText value="#{frente.nome}" />
 			</p:column>
 
-			<p:columns value="#{dtGroupView.years}" var="year">
-				<h:outputText value="#{player.getGoals(year)}" />
-			</p:columns>
+			<p:column headerText="Id">
 
-			<f:facet name="footer">
-            Data between 2010-2014
-        </f:facet>
+				<p:dataList value="#{frente.areas}" var="areas">
+			        #{areas.nome}
+			    </p:dataList>
+
+			</p:column>
+
 		</p:dataTable>
+
+		<br />
+
+		<ui:repeat var="frente" value="#{frenteBean.listar()}">
+			<p:fieldset legend="#{frente.nome}" style="margin-bottom: 20px; font-size: 10px;">
+				<h:panelGrid>
+
+					<p:dataTable var="area" value="#{frente.areas}">
+				
+						<p:columnGroup type="header">
+							<p:row>
+								<p:column headerText="Area" />
+								<p:column headerText="This Year" />
+								<p:column headerText="Last Year" />
+								<p:column headerText="This Year" />
+							</p:row>
+						</p:columnGroup>
+
+						<p:column>
+							<h:outputText value="#{area.nome}" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{sale.lastYearProfit}%" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{sale.thisYearProfit}%" />
+						</p:column>
+						
+						<p:column>
+							<h:outputText value="#{sale.lastYearSale}">
+								<f:convertNumber type="currency" currencySymbol="$" />
+							</h:outputText>
+						</p:column>
+						
+					</p:dataTable>
+
+
+
+
+
+				</h:panelGrid>
+			</p:fieldset>
+		</ui:repeat>
+
+
+
+
+
+
+
+
+
 
 
 
