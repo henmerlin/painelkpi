@@ -29,11 +29,9 @@
 			<p:message for="n1" />
 
 			<p:outputLabel for="n2" value="Periodo: " />
-			<p:selectOneMenu id="n2" converter="omnifaces.SelectItemsConverter"
-				value="#{resultadoBean.resultado.periodo}">
+			<p:selectOneMenu id="n2" converter="omnifaces.SelectItemsConverter" value="#{resultadoBean.resultado.periodo}">
 				<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-				<f:selectItems value="#{periodoBean.listar()}" var="periodo"
-					itemLabel="#{periodo.nome}" itemValue="#{periodo}" />
+				<f:selectItems value="#{periodoBean.listar()}" var="periodo" itemLabel="#{periodo.nome}" itemValue="#{periodo}" />
 	        </p:selectOneMenu>
 			<p:message for="n2" />
 
