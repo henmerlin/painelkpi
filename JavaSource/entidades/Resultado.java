@@ -21,8 +21,19 @@ public class Resultado{
 	
 	private Date periodo;
 	
+	private Double valor;
+	
+
 	public Resultado() {
 	
+	}
+	
+	public Double getValor() {
+		return valor;
+	}
+
+	public void setValor(Double valor) {
+		this.valor = valor;
 	}
 
 	public Integer getId() {

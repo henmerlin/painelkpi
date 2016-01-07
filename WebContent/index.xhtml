@@ -12,61 +12,47 @@
 	<ui:define name="botoesAcao"></ui:define>
 	<ui:define name="conteudo">
 
-		<p:dataTable var="frente" value="#{frenteBean.listar()}">
-			<p:column headerText="Id">
-				<h:outputText value="#{frente.nome}" />
-			</p:column>
-
-			<p:column headerText="Id">
-
-				<p:dataList value="#{frente.areas}" var="areas">
-			        #{areas.nome}
-			    </p:dataList>
-
-			</p:column>
-
-		</p:dataTable>
-
-		<br />
-
 		<ui:repeat var="frente" value="#{frenteBean.listar()}">
-			<p:fieldset legend="#{frente.nome}" style="margin-bottom: 20px; font-size: 10px;">
-				<h:panelGrid>
 
-					<p:dataTable var="area" value="#{frente.areas}">
-				
-						<p:columnGroup type="header">
-							<p:row>
-								<p:column headerText="Area" />
-								<p:column headerText="This Year" />
-								<p:column headerText="Last Year" />
-								<p:column headerText="This Year" />
-							</p:row>
-						</p:columnGroup>
+			<p:fieldset legend="#{frente.nome}">
 
-						<p:column>
-							<h:outputText value="#{area.nome}" />
-						</p:column>
-						<p:column>
-							<h:outputText value="#{sale.lastYearProfit}%" />
-						</p:column>
-						<p:column>
-							<h:outputText value="#{sale.thisYearProfit}%" />
-						</p:column>
-						
-						<p:column>
-							<h:outputText value="#{sale.lastYearSale}">
-								<f:convertNumber type="currency" currencySymbol="$" />
-							</h:outputText>
-						</p:column>
-						
-					</p:dataTable>
+				<ui:repeat var="area" value="#{frente.areas}">
+
+					<p:fieldset legend="#{area.nome}" style="margin-top: 15px;">
+
+						<p:dataTable var="kpi" value="#{area.kpis}">
+
+							<p:columnGroup type="header">
+								<p:row>
+									<p:column rowspan="#{area.kpis.size()}" colspan="10"
+										headerText="#{area.nome}" />
+								</p:row>
+
+								<ui:repeat var="kpi" value="#{area.kpis}">
+									<p:row>
+										<p:column headerText="" />
+										<ui:repeat var="resultado" value="#{kpi.resultados}">
+											<p:column headerText="#{resultado.periodo.month+1}/#{resultado.periodo.year + 1900}" />
+										</ui:repeat>
+									</p:row>
+									
+									<p:column headerText="#{kpi.nome}" />
+										<ui:repeat var="resultado" value="#{kpi.resultados}">
+											<p:column headerText="#{resultado.valor}" />
+										</ui:repeat>									
+								</ui:repeat>
 
 
+							</p:columnGroup>
 
 
 
-				</h:panelGrid>
+						</p:dataTable>
+
+					</p:fieldset>
+
+				</ui:repeat>
+
 			</p:fieldset>
 		</ui:repeat>
 
