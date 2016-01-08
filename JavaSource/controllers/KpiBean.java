@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import controllers.util.JSFUtil;
 import entidades.Kpi;
+import entidades.Resultado;
 import model.KpiServico;
 
 @Named
@@ -40,5 +41,11 @@ public class KpiBean {
 	public void setKpi(Kpi kpi) {
 		this.kpi = kpi;
 	}
+	
+	public List<Resultado> listarResultados(Kpi kpi) {
+
+		return this.servicoKpi.listarResultados(kpi);
+	}	
+	
 	
 }

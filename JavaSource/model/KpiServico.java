@@ -9,6 +9,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import entidades.Kpi;
+import entidades.Resultado;
 
 @Stateless
 public class KpiServico {
@@ -36,4 +37,17 @@ public class KpiServico {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Resultado> listarResultados(Kpi kpi) {
+		try {
+			Query query = this.entityManager.createQuery("FROM Resultado r WHERE r.kpi=:param1");
+			query.setParameter("param1", kpi);
+			return query.getResultList();
+		} catch (NoResultException e) {
+			return new ArrayList<Resultado>();
+		}
+	}		
+	
+	
+	
 }

@@ -98,4 +98,6 @@ public class Kpi{
 	public String toString() {
 		return "Kpi [id=" + id + "]";
 	}
+	
+	
 }

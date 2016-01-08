@@ -1,13 +1,11 @@
 package controllers;
 
-import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import controllers.util.JSFUtil;
 import entidades.Area;
-import entidades.Kpi;
 import entidades.Resultado;
 import model.ResultadoServico;
 
@@ -32,11 +30,6 @@ public class ResultadoBean {
 		JSFUtil.addInfoMessage("Resultado cadastrado com sucesso!");
 	}
 
-	public List<Resultado> listar(Kpi kpi) {
-
-		return this.servicoResultado.listar(kpi);
-	}	
-	
 	public Resultado getResultado() {
 		return resultado;
 	}
