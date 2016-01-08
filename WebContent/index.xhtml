@@ -13,45 +13,53 @@
 	<ui:define name="conteudo">
 
 
+
+		<p:commandButton value="Basic" type="button"
+			onclick="PF('dlg1').show();" />
+		<p:dialog header="Basic Dialog" widgetVar="dlg1" height="600"
+			width="700">
+			<p:chart type="line" model="#{chartView.areaModel}"
+				style="height:300px" />
+		</p:dialog>
+
+
+
 		<ui:repeat var="frente" value="#{frenteBean.listar()}">
 
-			<p:fieldset legend="#{frente.nome}" style="margin-bottom:20px">
+			<p:fieldset legend="#{frente.nome}" style="margin-top: 20px;">
 
 
 				<ui:repeat var="area" value="#{frente.areas}">
 
 
-					<p:panel id="panel" header="#{area.nome}"
+					<p:fieldset id="panel" legend="#{area.nome}"
 						style="margin-bottom:10px;" value="#{area.nome}">
-
 
 						<ui:repeat var="kpi" value="#{area.kpis}">
 
-							<p:dataTable var="resultado" value="#{kpi.resultados}">
-								<p:column headerText="Periodo">
-									<h:outputText value="#{resultado.periodo.nome}" />
-								</p:column>
+							<p:fieldset legend="#{kpi.nome}" style="margin-top: 20px;">
 
-								<p:column headerText="Resultado">
-									<h:outputText value="#{resultado.valor}" />
-								</p:column>
+								<p:commandButton id="toggler" type="button" value="Columns"
+									icon="ui-icon-calculator" />
 
-							
-							</p:dataTable>
+
+								<p:dataTable var="resultado" value="#{kpi.resultados}">
+									<p:column headerText="Periodo">
+										<h:outputText value="#{resultado.periodo.nome}" />
+									</p:column>
+
+									<p:column headerText="Realizado">
+										<h:outputText value="#{resultado.valor}" />
+									</p:column>
+
+								</p:dataTable>
+
+
+							</p:fieldset>
 
 						</ui:repeat>
 
-					</p:panel>
-
-
-
-
-
-
-
-
-
-
+					</p:fieldset>
 				</ui:repeat>
 			</p:fieldset>
 
