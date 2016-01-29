@@ -44,6 +44,10 @@
 				<p:inputText id="n3" value="#{resultadoBean.resultado.valor}" />
 				<p:message for="n3" />
 				
+				<p:outputLabel for="n4" value="Volume: " />
+				<p:inputText id="n4" value="#{resultadoBean.resultado.volume}" />
+				<p:message for="n4" />			
+				
 				<p:commandButton value="Cadastrar"
 					action="#{resultadoBean.cadastrar()}" update="@form" />
 

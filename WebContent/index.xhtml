@@ -12,6 +12,27 @@
 	<ui:define name="botoesAcao"></ui:define>
 	<ui:define name="conteudo">
 
+		<style>
+table {
+	border: 1px solid #000;
+	border-collapse: collapse;
+}
+
+td, th {
+	border: 1px solid #000;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+.vermelho {
+	background: red;
+}
+
+.verde {
+	background: green;
+}
+</style>
+
 
 		<ui:repeat var="frente" value="#{frenteBean.listar()}">
 
@@ -44,8 +65,8 @@
 
 								<ui:repeat var="periodo" value="#{periodoBean.listar()}">
 
-									<td align="center">#{resultadoBean.consultarResultadoPorPeriodo(periodo, kpi)}</td>
-
+									<td align="center">
+										<h:outputText styleClass="#{tabelaHistoricoBean.identidadeVisual(periodo, kpi)}" value="#{tabelaHistoricoBean.resultado(periodo, kpi)}" /></td>
 								</ui:repeat>
 							</tr>
 

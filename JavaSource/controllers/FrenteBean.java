@@ -32,13 +32,17 @@ public class FrenteBean {
 	}
 
 	public void cadastrar() {
+		try {
+			this.servicoFrente.cadastrar(this.frente);
+			JSFUtil.addInfoMessage("Frente " + this.frente.getNome() + " cadastrada com sucesso!");
+		} catch (Exception e) {
+			JSFUtil.addErrorMessage(e.getMessage());
+		}
 		
-		this.servicoFrente.cadastrar(this.frente);
-		JSFUtil.addInfoMessage("Frente " + this.frente.getNome() + " cadastrada com sucesso!");
 	}
-	
+
 	public List<Frente> listar() {
 		return this.servicoFrente.listar();
 	}
-	
+
 }

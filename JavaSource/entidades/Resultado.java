@@ -26,13 +26,26 @@ public class Resultado{
 	private Periodo periodo;
 	
 	@Min(1)
+	@NotNull
 	private Double valor;
+	
+	@NotNull
+	@Min(1)
+	private Integer volume;
 	
 
 	public Resultado() {
 	
 	}
 	
+	public Integer getVolume() {
+		return volume;
+	}
+
+	public void setVolume(Integer volume) {
+		this.volume = volume;
+	}
+
 	public Double getValor() {
 		return valor;
 	}

@@ -30,7 +30,9 @@ public class Kpi{
 	@OneToMany(mappedBy="kpi", fetch=FetchType.EAGER)
 	private List<Resultado> resultados;
 	
-
+	@OneToMany(mappedBy="kpi", fetch=FetchType.EAGER)
+	private List<Forecast> forecasts;
+	
 	public Kpi() {
 		this.area = new Area();
 	}
@@ -52,6 +54,8 @@ public class Kpi{
 		this.nome = nome;
 	}
 
+	
+	
 	public Area getArea() {
 		return area;
 	}
@@ -97,6 +101,16 @@ public class Kpi{
 	@Override
 	public String toString() {
 		return "Kpi [id=" + id + "]";
+	}
+
+
+	public List<Forecast> getForecasts() {
+		return forecasts;
+	}
+
+
+	public void setForecasts(List<Forecast> forecasts) {
+		this.forecasts = forecasts;
 	}
 	
 	

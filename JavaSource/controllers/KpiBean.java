@@ -7,7 +7,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import controllers.util.JSFUtil;
 import entidades.Kpi;
-import entidades.Periodo;
 import entidades.Resultado;
 import model.KpiServico;
 
@@ -26,8 +25,14 @@ public class KpiBean {
 	
 	public void cadastrar() {
 
-		this.servicoKpi.cadastrar(this.kpi);
-		JSFUtil.addInfoMessage("KPI cadastrado com sucesso!");
+		try {
+			this.servicoKpi.cadastrar(this.kpi);
+			JSFUtil.addInfoMessage("KPI " + this.kpi.getNome() + " cadastrado com sucesso!");
+		} catch (Exception e) {
+			JSFUtil.addErrorMessage(e.getMessage());
+		}
+			
+
 	}
 	
 	public List<Kpi> listar(){

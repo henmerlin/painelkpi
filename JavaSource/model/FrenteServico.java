@@ -20,10 +20,26 @@ public class FrenteServico {
 
 	}
 
-	public Frente cadastrar(Frente frente){
+	public Frente cadastrar(Frente frente) throws Exception{
+		
+		
+		if ( !(this.consultaPorNome(frente.getNome()) == null)){
+			throw new Exception("A frente " + frente.getNome() + " já foi cadastrada!");
+		}
 
 		this.entityManager.persist(frente);
 		return frente;
+	}
+	
+	public Frente consultaPorNome(String nome){
+		
+		try {
+			Query query = this.entityManager.createQuery("FROM Frente f WHERE f.nome =:param1");
+			query.setParameter("param1", nome);
+			return (Frente) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@SuppressWarnings("unchecked")

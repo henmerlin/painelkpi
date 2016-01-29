@@ -22,11 +22,28 @@ public class AreaServico {
 
 	}
 
-	public Area cadastrar(Area area){
+	public Area cadastrar(Area area) throws Exception{
+		
+		
+		if ( !(this.consultaPorNome(area.getNome()) == null)){
+			throw new Exception("A area " + area.getNome() + " já foi cadastrada!");
+		}
+		
 		this.entityManager.persist(area);
 		return area;
 	}
 	
+	
+	public Area consultaPorNome(String nome){
+		
+		try {
+			Query query = this.entityManager.createQuery("FROM Area a WHERE a.nome =:param1");
+			query.setParameter("param1", nome);
+			return (Area) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<Area> listar() {

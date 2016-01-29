@@ -6,8 +6,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import controllers.util.JSFUtil;
 import entidades.Area;
-import entidades.Kpi;
-import entidades.Periodo;
 import entidades.Resultado;
 import model.ResultadoServico;
 
@@ -28,15 +26,14 @@ public class ResultadoBean {
 
 	public void cadastrar() {
 
-		this.servicoResultado.cadastrar(this.resultado);
-		JSFUtil.addInfoMessage("Resultado cadastrado com sucesso!");
+		try {
+			this.servicoResultado.cadastrar(this.resultado);
+			JSFUtil.addInfoMessage("Resultado cadastrado com sucesso!");
+		} catch (Exception e) {
+			JSFUtil.addErrorMessage(e.getMessage());
+		}
 	}
 	
-	public Double consultarResultadoPorPeriodo(Periodo per, Kpi kpi) {
-
-		return this.servicoResultado.consultarResultadoPorPeriodo(per, kpi);
-	}
-
 	public Resultado getResultado() {
 		return resultado;
 	}

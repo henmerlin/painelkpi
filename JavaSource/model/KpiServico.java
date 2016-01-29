@@ -8,8 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
 import entidades.Kpi;
-import entidades.Periodo;
 import entidades.Resultado;
 
 @Stateless
@@ -22,11 +22,29 @@ public class KpiServico {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Kpi cadastrar(Kpi kpi){
+	public Kpi cadastrar(Kpi kpi) throws Exception{
+		
+		if ( !(this.consultaPorNome(kpi) == null)){
+			throw new Exception("O kpi " + kpi.getNome() + " já foi cadastrado!");
+		}
 
 		this.entityManager.persist(kpi);
 		return kpi;
 	}
+	
+	public Kpi consultaPorNome(Kpi kpi){
+		
+		try {
+			Query query = this.entityManager.createQuery("FROM Kpi k WHERE k.nome =:param1 AND k.area =:param2");
+			query.setParameter("param1", kpi.getNome());
+			query.setParameter("param2", kpi.getArea());
+			return (Kpi) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	
 	
 	@SuppressWarnings("unchecked")
 	public List<Kpi> listar() {

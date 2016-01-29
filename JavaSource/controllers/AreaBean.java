@@ -30,10 +30,17 @@ public class AreaBean {
 		this.area = area;
 	}
 
-	public Area cadastrar() {
-		this.servicoArea.cadastrar(this.area);
-		JSFUtil.addInfoMessage("Area cadastrada com sucesso!");
-		return new Area();
+	public void cadastrar() {
+		
+		
+		try {
+			this.servicoArea.cadastrar(this.area);
+			JSFUtil.addInfoMessage("Area " + this.area.getNome() + " cadastrada com sucesso!");
+			
+		} catch (Exception e) {
+			JSFUtil.addErrorMessage(e.getMessage());
+		}
+		
 	}
 	
 	public List<Area> listar(){
