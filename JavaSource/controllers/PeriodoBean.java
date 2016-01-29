@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import controllers.util.JSFUtil;
+import entidades.Kpi;
 import entidades.Periodo;
 import model.PeriodoServico;
 
@@ -31,6 +32,11 @@ public class PeriodoBean {
 	public List<Periodo> listar() {
 
 		return this.servicoPeriodo.listar();
+	}	
+	
+	public List<Periodo> listarPorKpi(Kpi kpi) {
+
+		return this.servicoPeriodo.listarPorKpi(kpi);
 	}	
 
 	public Periodo getPeriodo() {

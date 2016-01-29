@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import controllers.util.JSFUtil;
 import entidades.Kpi;
+import entidades.Periodo;
 import entidades.Resultado;
 import model.KpiServico;
 

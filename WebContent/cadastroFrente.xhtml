@@ -11,16 +11,22 @@
 	<ui:define name="tituloSecundario">Centro de Operações</ui:define>
 
 	<ui:define name="botoesAcao">
-		<p:commandButton value="Cadastrar" action="#{frenteBean.cadastrar()}"
-			update="@form" />
+
 	</ui:define>
 
 	<ui:define name="conteudo">
-		<h:panelGrid columns="3">
-			<p:outputLabel for="n1" value="Nome:" converter="omnifaces.SelectItemsConverter"/>
-			<p:inputText id="n1" value="#{frenteBean.frente.nome}" />
-			<p:message for="n1" />
-		</h:panelGrid>
+		<p:panel header="Formulário">
+			<h:panelGrid columns="3">
+				<p:outputLabel for="n1" value="Nome:"
+					converter="omnifaces.SelectItemsConverter" />
+				<p:inputText id="n1" value="#{frenteBean.frente.nome}" />
+				<p:message for="n1" />
+				<p:commandButton value="Cadastrar"
+					action="#{frenteBean.cadastrar()}" update="@form" />
+
+			</h:panelGrid>
+		</p:panel>
+
 	</ui:define>
 
 </ui:composition>

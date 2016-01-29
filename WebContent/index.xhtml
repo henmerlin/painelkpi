@@ -18,12 +18,15 @@
 			<p:fieldset legend="#{frente.nome}" style="margin-top: 20px;">
 
 
-				<table border="1">
+				<table border="1" class="table">
 
 					<thead>
-						<tr>
+						<tr bgcolor="#eee">
 							<th>Área</th>
-							<th>KPI</th>
+							<th>KPI's</th>
+							<ui:repeat var="periodo" value="#{periodoBean.listar()}">
+								<th>#{periodo.nome}</th>
+							</ui:repeat>
 						</tr>
 
 					</thead>
@@ -37,16 +40,13 @@
 
 						<ui:repeat var="kpi" value="#{area.kpis}">
 							<tr>
-								<td>#{kpi.nome}</td>
-								
-								<ui:repeat var="resultado" value="#{kpiBean.listarResultados(kpi)}">
-								
-									<td>#{resultado.valor}</td>
-								
+								<td align="center">#{kpi.nome}</td>
+
+								<ui:repeat var="periodo" value="#{periodoBean.listar()}">
+
+									<td align="center">#{resultadoBean.consultarResultadoPorPeriodo(periodo, kpi)}</td>
+
 								</ui:repeat>
-								
-								
-								
 							</tr>
 
 						</ui:repeat>

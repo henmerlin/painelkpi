@@ -9,6 +9,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import entidades.Kpi;
+import entidades.Periodo;
 import entidades.Resultado;
 
 @Stateless

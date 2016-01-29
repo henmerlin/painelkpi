@@ -12,34 +12,45 @@
 	<ui:define name="botoesAcao"></ui:define>
 
 	<ui:define name="botoesAcao">
-		<p:commandButton value="Cadastrar"
-			action="#{resultadoBean.cadastrar()}" update="@form" />
+
 	</ui:define>
 
 	<ui:define name="conteudo">
-		<h:panelGrid columns="3">
+		<p:panel header="Formulário">
 
-			<p:outputLabel for="n1" value="KPI: " />
-			<p:selectOneMenu id="n1" converter="omnifaces.SelectItemsConverter"
-				value="#{resultadoBean.resultado.kpi}">
-				<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-				<f:selectItems value="#{kpiBean.listar()}" var="kpi"
-					itemLabel="#{kpi.nome} - #{kpi.area.nome}" itemValue="#{kpi}" />/>
+
+
+			<h:panelGrid columns="3">
+
+				<p:outputLabel for="n1" value="KPI: " />
+				<p:selectOneMenu id="n1" converter="omnifaces.SelectItemsConverter"
+					value="#{resultadoBean.resultado.kpi}">
+					<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+					<f:selectItems value="#{kpiBean.listar()}" var="kpi"
+						itemLabel="#{kpi.nome} - #{kpi.area.nome}" itemValue="#{kpi}" />/>
 	        </p:selectOneMenu>
-			<p:message for="n1" />
+				<p:message for="n1" />
 
-			<p:outputLabel for="n2" value="Periodo: " />
-			<p:selectOneMenu id="n2" converter="omnifaces.SelectItemsConverter" value="#{resultadoBean.resultado.periodo}">
-				<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-				<f:selectItems value="#{periodoBean.listar()}" var="periodo" itemLabel="#{periodo.nome}" itemValue="#{periodo}" />
-	        </p:selectOneMenu>
-			<p:message for="n2" />
+				<p:outputLabel for="n2" value="Periodo: " />
+				<p:selectOneMenu id="n2" converter="omnifaces.SelectItemsConverter"
+					value="#{resultadoBean.resultado.periodo}">
+					<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+					<f:selectItems value="#{periodoBean.listar()}" var="periodo"
+						itemLabel="#{periodo.nome}" itemValue="#{periodo}" />
+				</p:selectOneMenu>
+				<p:message for="n2" />
 
-			<p:outputLabel for="n3" value="Valor: " />
-			<p:inputText id="n3" value="#{resultadoBean.resultado.valor}" />
-			<p:message for="n3" />
+				<p:outputLabel for="n3" value="Valor: " />
+				<p:inputText id="n3" value="#{resultadoBean.resultado.valor}" />
+				<p:message for="n3" />
+				
+				<p:commandButton value="Cadastrar"
+					action="#{resultadoBean.cadastrar()}" update="@form" />
 
-		</h:panelGrid>
+
+			</h:panelGrid>
+
+		</p:panel>
 	</ui:define>
 
 </ui:composition>

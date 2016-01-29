@@ -12,27 +12,32 @@
 	<ui:define name="botoesAcao"></ui:define>
 
 	<ui:define name="botoesAcao">
-		<p:commandButton value="Cadastrar" action="#{kpiBean.cadastrar()}"
-			update="@form" />
+
 	</ui:define>
 
 	<ui:define name="conteudo">
-		<h:panelGrid columns="3">
 
-			<p:outputLabel for="n1" value="Nome: " />
-			<p:inputText id="n1" value="#{kpiBean.kpi.nome}" />
-			<p:message for="n1" />
+		<p:panel header="Formulário">
 
-			<p:outputLabel for="n2" value="Área: " />
-			<p:selectOneMenu id="n2" value="#{kpiBean.kpi.area}"
-				converter="omnifaces.SelectItemsConverter">
-				<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-				<f:selectItems value="#{areaBean.listar()}" var="frente"
-					itemLabel="#{frente.nome}" itemValue="#{frente}" />/>
-	        </p:selectOneMenu>
-			<p:message for="n2" />
+			<h:panelGrid columns="3">
 
-		</h:panelGrid>
+				<p:outputLabel for="n1" value="Nome: " />
+				<p:inputText id="n1" value="#{kpiBean.kpi.nome}" />
+				<p:message for="n1" />
+
+				<p:outputLabel for="n2" value="Área: " />
+				<p:selectOneMenu id="n2" value="#{kpiBean.kpi.area}"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+					<f:selectItems value="#{areaBean.listar()}" var="frente"
+						itemLabel="#{frente.nome}" itemValue="#{frente}" />/>
+	        	</p:selectOneMenu>
+				<p:message for="n2" />
+
+				<p:commandButton value="Cadastrar" action="#{kpiBean.cadastrar()}"
+					update="@form" />
+			</h:panelGrid>
+		</p:panel>
 	</ui:define>
 
 </ui:composition>

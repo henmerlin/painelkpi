@@ -12,22 +12,29 @@
 	<ui:define name="botoesAcao"></ui:define>
 
 	<ui:define name="botoesAcao">
-		<p:commandButton value="Cadastrar"
-			action="#{periodoBean.cadastrar()}" update="@form" />
+
 	</ui:define>
 
 	<ui:define name="conteudo">
-		<h:panelGrid columns="3">
+		<p:panel header="Formulário">
 
-			<p:outputLabel for="n0" value="Nome: " />
-			<p:inputText id="n0" value="#{periodoBean.periodo.nome}" />
-			<p:message for="n0" />
+			<h:panelGrid columns="3">
 
-			<p:outputLabel for="n2" value="Data de Referencia: " />
-			<p:calendar id="n2" value="#{periodoBean.periodo.data}" />
-			<p:message for="n2" />
+				<p:outputLabel for="n0" value="Nome: " />
+				<p:inputText id="n0" value="#{periodoBean.periodo.nome}" />
+				<p:message for="n0" />
 
-		</h:panelGrid>
+				<p:outputLabel for="n2" value="Data de Referencia: " />
+				<p:calendar id="n2" value="#{periodoBean.periodo.data}" />
+				<p:message for="n2" />
+				
+				
+				<p:commandButton value="Cadastrar"
+					action="#{periodoBean.cadastrar()}" update="@form" />
+
+				
+			</h:panelGrid>
+		</p:panel>
 	</ui:define>
 
 </ui:composition>
